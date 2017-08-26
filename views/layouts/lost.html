@@ -533,14 +533,32 @@
               $('<td>').text(items[i].itemtype),
               $('<td>').text(items[i].size),
               $('<td>').text(items[i].color),
-              $('<td>').text(items[i].location)
+              $('<td>').text(items[i].location),
+              $('<td>').html(button)
             );
             $(tr).appendTo(tbody);
           }
         })
 
 
-      // click function for hitting submit (ok this one was kinda obvious)
+
+     
+
+var button = $("<button>Claim Item</button>");
+button.click(function() {
+
+    console.log("fuck you");
+});
+
+  // $.ajax({
+  //   type: "delete",
+  //   url: "/api/stuff/:id"
+  // })
+
+
+
+// click function for hitting submit (ok this one was kinda obvious)
+
         $("#submitItem").click(function() {
           console.log("clicked")
           event.preventDefault();
