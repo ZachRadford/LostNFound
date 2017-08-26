@@ -76,13 +76,14 @@
 
   </div>
 
+<!--Table display for data already in DB  -->
   <div class="container">
 
     <div class="row" id='stuffFound'>
 
       <table id='content'>
 
-        <caption>Lost</caption>
+        <caption>Found</caption>
 
         <tr>
 
@@ -94,6 +95,8 @@
 
           <th class='title'>Location</th>
 
+          <th class='title'>Claim</th>
+
         </tr>
 
         <tbody id="items">
@@ -104,6 +107,7 @@
 
     </div>
 
+<!--below is the adding item HTML  -->
     <div class="row" id='addItem'>
 
       <h3 class='heading'>Add Item</h3>
@@ -473,7 +477,7 @@
 </div>
 
 <!-- failure modal will only display when match fails -->
-<div class="ui modal">
+<div class="ui modal failure">
   <i class="close icon"></i>
   <div class="header">
     Sorry!
@@ -485,7 +489,7 @@
 </div>
 
 <!-- success modal will only display when match succeeds -->
-<div class="ui modal">
+<div class="ui modal success">
   <i class="close icon"></i>
   <div class="header">
     Success!
@@ -544,14 +548,30 @@
           $('.ui.modal').modal('show');
         });
 
-      // this function runs to check if a there is a match based on the response the user clicks in the modal.
-        function claimMatch(){
-
-
+      // this function checks if a there is a match based on the response the user clicks inside the claim modal.
+        function claimMatch(userAnswer){
+          $.ajax({
+            url: "api/###"
+          }).then(function(res, err) {
+            if (userAnswer === res) {
+              $.ajax({
+                type: "delete",
+                url: "/api/stuff/:id"
+              }).then(function(){
+                $('.ui.modal.success').modal('show');
+              })
+            } else {
+                $('.ui.modal.failure').modal('show');
+            }
+          });
         }
 
       $('.deny').click(function() {
         claimMatch('No');
+      });
+
+      $('.positive').click(function(){
+        claimMatch('Yes');
       })
 
     // ajax call to display table data
@@ -566,7 +586,8 @@
               $('<td>').text(items[i].itemtype),
               $('<td>').text(items[i].size),
               $('<td>').text(items[i].color),
-              $('<td>').text(items[i].location)
+              $('<td>').text(items[i].location),
+              $('<td>').html("<button>Claim Item</button>")
             );
             $(tr).appendTo(tbody);
           }

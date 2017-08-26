@@ -15,7 +15,6 @@ module.exports = function(app) {
   });
 
 
-
   app.post("/api/postitem", function(req, res) {
     console.log(req)
     db.stuff.create({
