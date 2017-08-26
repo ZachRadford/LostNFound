@@ -1,18 +1,7 @@
 var Nightmare = require("nightmare");
 var should = require('chai').should();
-var home = require("../home.html");
-var lost = require("../lost.html");
-var found = require("../found.html");
 
-function claimMatch(){
 
-}
-
-// *Unique Attributes (all Y/N)— default N
-// **Pocket(s)?
-// **Collar?
-// **Pattern?
-// **Natural material?
 
 // testing front end user features. What happens when input is submitted.
 describe("claimMatch", function(){
@@ -25,28 +14,9 @@ describe("claimMatch", function(){
 
   });
 
-  it("should", function{
-
-  });
-
-
-
 
 });
 
-//
-// describe("disemvowel", function() {
-//   it("should return a string without vowels", function() {
-//     disemvowel("gingham").should.equal("gnghm");
-//   });
-//
-//   it("should throw when the string only includes vowels", function() {
-//     (function() {
-//       disemvowel("you");
-//     }).should.throw(Error);
-//   });
-//
-// });
 
 // describe("Reddit", function() {
 //   // The default tests in mocha is 2 seconds.
