@@ -115,11 +115,11 @@
           <div class="item">
 
             <a class="active title">
-            
+
                   <i class="dropdown icon"></i>
-            
+
                   Type
-            
+
                 </a>
 
             <div class="active content">
@@ -187,11 +187,11 @@
           <div class="item">
 
             <a class="active title">
-            
+
                   <i class="dropdown icon"></i>
-            
+
                   Size
-            
+
                 </a>
 
             <div class="active content">
@@ -259,11 +259,11 @@
           <div class="item">
 
             <a class="title">
-              
+
                   <i class="dropdown icon"></i>
-              
+
                   Color
-              
+
                 </a>
 
             <div class="content">
@@ -331,11 +331,11 @@
           <div class="item">
 
             <a class="active title">
-            
+
                   <i class="dropdown icon"></i>
-            
+
                   Attribute
-            
+
                 </a>
 
             <div class="active content">
@@ -379,11 +379,11 @@
           <div class="item">
 
             <a class="active title">
-            
+
                   <i class="dropdown icon"></i>
-            
+
                   Location
-            
+
                 </a>
 
             <div class="active content">
@@ -450,7 +450,32 @@
 
   </div>
 
+<!-- This part is the modal for claiming an item -->
+
+<div class="ui modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Claiming an item
+  </div>
+    <div class="description">
+      <center><div class="ui header">Validate unique attribute</div>
+      <p>To verify you own this item, please answer whether the item has a pattern (No) or is solid (Yes).</p>
+      <p>If your answer matches the finder's provided answer, we will introduce both parties so they can arrange a meetup.</p>
+    </div></center>
+  <div class="actions">
+    <div class="ui black deny button">
+      Nope
+    </div>
+    <div class="ui positive right labeled icon button">
+      Yep
+    </div>
+  </div>
+</div>
+
+
+
   <script>
+  // Google Maps javascript - has to live outside the document.ready
 
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -486,9 +511,17 @@
 
 
       $(document).ready(function() {
+    // this initializes the semantic UI features we are using for the add-item menu and claiming modal
         $('.ui.accordion').accordion();
         $('.ui.checkbox').checkbox();
 
+        var button = $("<button>Claim Item</button>");
+
+        button.click(function() {
+          $('.ui.modal').modal('show');
+        });
+
+    // ajax call to display table data
         $.ajax({
           url: "/api/getitems?lost=0"
         }).then(function(res, err) {
@@ -507,7 +540,7 @@
         })
 
 
-
+      // click function for hitting submit (ok this one was kinda obvious)
         $("#submitItem").click(function() {
           console.log("clicked")
           event.preventDefault();
@@ -544,7 +577,7 @@
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKgqILnUfcbks-G_f0KfFU-ENQ4fod09E&callback=initMap">
 </script>
 
-    
+
 
 </body>
 </html>
